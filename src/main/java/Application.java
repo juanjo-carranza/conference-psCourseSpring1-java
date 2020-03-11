@@ -14,7 +14,7 @@ public class Application {
         System.out.println(service);
         System.out.println(service.findAll().get(0).getFirstName());
 
-        //with prototype
+        //with singleton
         SpeakerService service2=appContext.getBean("speakerService", SpeakerService.class);
         //SpeakerService service=new SpeakerServiceImpl();
         System.out.println(service2);
