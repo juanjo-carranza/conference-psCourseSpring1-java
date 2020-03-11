@@ -3,24 +3,34 @@ package com.pluralsight.service;
 import com.pluralsight.model.Speaker;
 import com.pluralsight.repository.HibernateSpeakerRepositoryImpl;
 import com.pluralsight.repository.SpeakerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private SpeakerRepository repository = new HibernateSpeakerRepositoryImpl();
+    private SpeakerRepository repository;
+
+    public SpeakerServiceImpl(){
+        System.out.println("SpeakServiceImpl no args constructor");
+    }
+
+    public SpeakerServiceImpl(SpeakerRepository speakerRepository){
+        System.out.println("SpeakServiceImpl repository constructor");
+        this.repository=speakerRepository;
+
+    }
 
     @Override
     public List<Speaker> findAll(){
         return repository.findAll();
     }
 
+    @Autowired
     public void setRepository(SpeakerRepository repository) {
+        System.out.println("SpeakServiceImpl setter");
         this.repository = repository;
     }
 
-    public SpeakerServiceImpl(SpeakerRepository speakerRepository){
-        this.repository=speakerRepository;
 
-    }
 }
